@@ -44,6 +44,15 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotarCamara"",
+                    ""type"": ""Value"",
+                    ""id"": ""95bdf392-17d2-4ac9-9686-a61c5a9dc3e0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -167,6 +176,39 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                     ""action"": ""Moverse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c0e8a96-0c7a-4f8a-be13-8da05b50fd1b"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""Moverse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aae70bb5-a442-41d7-bd49-7874d79a60bf"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotarCamara"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7569e65f-af2f-4273-85bb-417b910737a6"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""RotarCamara"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -183,6 +225,7 @@ public partial class @Controles : IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Interactuar = m_Gameplay.FindAction("Interactuar", throwIfNotFound: true);
         m_Gameplay_Moverse = m_Gameplay.FindAction("Moverse", throwIfNotFound: true);
+        m_Gameplay_RotarCamara = m_Gameplay.FindAction("RotarCamara", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -244,12 +287,14 @@ public partial class @Controles : IInputActionCollection2, IDisposable
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Interactuar;
     private readonly InputAction m_Gameplay_Moverse;
+    private readonly InputAction m_Gameplay_RotarCamara;
     public struct GameplayActions
     {
         private @Controles m_Wrapper;
         public GameplayActions(@Controles wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interactuar => m_Wrapper.m_Gameplay_Interactuar;
         public InputAction @Moverse => m_Wrapper.m_Gameplay_Moverse;
+        public InputAction @RotarCamara => m_Wrapper.m_Gameplay_RotarCamara;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -265,6 +310,9 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                 @Moverse.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoverse;
                 @Moverse.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoverse;
                 @Moverse.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMoverse;
+                @RotarCamara.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotarCamara;
+                @RotarCamara.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotarCamara;
+                @RotarCamara.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotarCamara;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -275,6 +323,9 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                 @Moverse.started += instance.OnMoverse;
                 @Moverse.performed += instance.OnMoverse;
                 @Moverse.canceled += instance.OnMoverse;
+                @RotarCamara.started += instance.OnRotarCamara;
+                @RotarCamara.performed += instance.OnRotarCamara;
+                @RotarCamara.canceled += instance.OnRotarCamara;
             }
         }
     }
@@ -292,5 +343,6 @@ public partial class @Controles : IInputActionCollection2, IDisposable
     {
         void OnInteractuar(InputAction.CallbackContext context);
         void OnMoverse(InputAction.CallbackContext context);
+        void OnRotarCamara(InputAction.CallbackContext context);
     }
 }
