@@ -19,16 +19,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float radioDeteccion;
 
     private bool enSuelo;
+    [SerializeField] private float alturaSalto;
 
     private Vector3 vectorMovimiento, vectorVertical; // SIRVE TANTO PARA SALTOS COMO PARA LA GRAVEDAD
     private Vector3 input; // ÍNDICE DIRECCIÓN DE MOVIMIENTO
 
     private Controles misControles;
 
+    private Animator anim;
         
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // SE EJECUTA AUTOMÁTICAMENTE ANTES DEL START CADA VEZ QUE SE ACTIVA EL OBJETO
@@ -41,9 +44,21 @@ public class Player : MonoBehaviour
         misControles.Gameplay.Interactuar.started += Interactuar; // SI SE PULSA LA E SE EJECUTA EL EVENTO (EN ESTE CASO EL DE INTERACTUAR)
 
         misControles.Gameplay.Moverse.performed += Moverse;
-        misControles.Gameplay.Moverse.canceled += MoverseCanceled;
+        misControles.Gameplay.Moverse.canceled += MoverseCanceled; // CANCEL ES CUANDO QUITAS EL DEDO DEL BOTÓN
 
+        misControles.Gameplay.Saltar.started += Saltar;
+       
+    }
 
+    // SALTAR
+    private void Saltar(InputAction.CallbackContext obj)
+    {
+        if (enSuelo)
+        {
+            vectorVertical.y = Mathf.Sqrt(-2 * factorGravedad * alturaSalto);
+            anim.SetTrigger("jump");
+            anim.SetBool("grounded", false);
+        }       
     }
 
     // MOVERSE
@@ -51,15 +66,18 @@ public class Player : MonoBehaviour
     {
         input = ctx.ReadValue<Vector2>();
 
+        anim.SetFloat("velocidad", input.magnitude);
+
         input = new Vector3(input.x, 0, input.y);
     }
-
     private void MoverseCanceled(InputAction.CallbackContext ctx)
     {
         input = ctx.ReadValue<Vector2>();
 
+        anim.SetFloat("velocidad", input.magnitude);
+
         input = new Vector3(input.x, 0, input.y);
-    }  
+    }
 
     // INTERACTUAR
     private void Interactuar(InputAction.CallbackContext obj)
@@ -90,10 +108,11 @@ public class Player : MonoBehaviour
             vectorMovimiento = Quaternion.Euler(0, anguloObjetivo, 0) * new Vector3(0, 0, 1);
 
             // NOS MOVEMOS EN BASE A DICHO VECTOR
-            controller.Move(vectorMovimiento * velocidadAndar * Time.deltaTime);
+            controller.Move(vectorMovimiento * input.magnitude * velocidadAndar * Time.deltaTime); // input.magnitude mueve el player en función de cuanto inclines el joystick (multiplicas la magnitud del vector)
         }
 
         AplicarGravedad();
+        
     }
     void AplicarGravedad()
     {
@@ -102,9 +121,16 @@ public class Player : MonoBehaviour
 
         enSuelo = Physics.CheckSphere(pies.position, radioDeteccion, queEsSuelo);
 
-        if(enSuelo && controller.velocity.y < 0)
+        anim.SetBool("grounded", enSuelo);
+
+        if(enSuelo && controller.velocity.y < 0) // ATERRIZAJE
         {
             vectorVertical.y = 0;
+            anim.SetBool("falling", false);
+        }
+        else if(controller.velocity.y < 0) // CAÍDA
+        {
+            anim.SetBool("falling", true);
         }
     }
 

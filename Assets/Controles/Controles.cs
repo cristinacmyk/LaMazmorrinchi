@@ -53,6 +53,15 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Saltar"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d254893-bbf5-459d-a6e5-79b8d173a8bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -209,6 +218,28 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                     ""action"": ""RotarCamara"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d50df9c5-0ad1-422b-989f-1c54ad0dea2e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Saltar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b738718e-6aad-4157-af13-e24c5a4161dc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Saltar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +257,7 @@ public partial class @Controles : IInputActionCollection2, IDisposable
         m_Gameplay_Interactuar = m_Gameplay.FindAction("Interactuar", throwIfNotFound: true);
         m_Gameplay_Moverse = m_Gameplay.FindAction("Moverse", throwIfNotFound: true);
         m_Gameplay_RotarCamara = m_Gameplay.FindAction("RotarCamara", throwIfNotFound: true);
+        m_Gameplay_Saltar = m_Gameplay.FindAction("Saltar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +320,7 @@ public partial class @Controles : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interactuar;
     private readonly InputAction m_Gameplay_Moverse;
     private readonly InputAction m_Gameplay_RotarCamara;
+    private readonly InputAction m_Gameplay_Saltar;
     public struct GameplayActions
     {
         private @Controles m_Wrapper;
@@ -295,6 +328,7 @@ public partial class @Controles : IInputActionCollection2, IDisposable
         public InputAction @Interactuar => m_Wrapper.m_Gameplay_Interactuar;
         public InputAction @Moverse => m_Wrapper.m_Gameplay_Moverse;
         public InputAction @RotarCamara => m_Wrapper.m_Gameplay_RotarCamara;
+        public InputAction @Saltar => m_Wrapper.m_Gameplay_Saltar;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,6 +347,9 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                 @RotarCamara.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotarCamara;
                 @RotarCamara.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotarCamara;
                 @RotarCamara.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRotarCamara;
+                @Saltar.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSaltar;
+                @Saltar.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSaltar;
+                @Saltar.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSaltar;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -326,6 +363,9 @@ public partial class @Controles : IInputActionCollection2, IDisposable
                 @RotarCamara.started += instance.OnRotarCamara;
                 @RotarCamara.performed += instance.OnRotarCamara;
                 @RotarCamara.canceled += instance.OnRotarCamara;
+                @Saltar.started += instance.OnSaltar;
+                @Saltar.performed += instance.OnSaltar;
+                @Saltar.canceled += instance.OnSaltar;
             }
         }
     }
@@ -344,5 +384,6 @@ public partial class @Controles : IInputActionCollection2, IDisposable
         void OnInteractuar(InputAction.CallbackContext context);
         void OnMoverse(InputAction.CallbackContext context);
         void OnRotarCamara(InputAction.CallbackContext context);
+        void OnSaltar(InputAction.CallbackContext context);
     }
 }
