@@ -7,8 +7,10 @@ public class NPC : MonoBehaviour
 {
 
     [SerializeField] private Transform zonaPatrulla;
+    private Animator anim;
 
     private NavMeshAgent agent;
+    [SerializeField] private float margenDeLlegada;
 
     [SerializeField] private int indicePuntoActual = 0; // VA A HACER UN TRACKING DEL SIGUIENTE PUNTO AL CUAL DESPLAZARNOS
 
@@ -17,6 +19,7 @@ public class NPC : MonoBehaviour
     void Awake()
     {
         agent= GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
 
         foreach (Transform punto in zonaPatrulla)
         {
@@ -37,10 +40,20 @@ public class NPC : MonoBehaviour
         while(true)
         {
             // LA RUTINA DEL NPC
-            CalcularNuevoPunto(); // 1.
+            CalcularNuevoPunto(); // 1. CALCULAS EL NUEVO PUNTO
+
             agent.SetDestination(puntosPatrulla[indicePuntoActual]); // 2. LE DICES A DÓNDE VA
-            yield return new WaitUntil(() => !agent.pathPending); // SI EL NPC YA HA CALCULADO EL NUEVO PUNTO...
-            yield return new WaitUntil(() => agent.remainingDistance <= 0); // 3. ME QUEDO EN ESPERA HASTA QUE LA DISTANCIA A ESTE PUNTO SEA 0
+
+            yield return new WaitUntil(() => !agent.pathPending); // EL NPC YA HA CALCULADO EL NUEVO PUNTO
+
+            anim.SetBool("walking", true);
+
+            yield return new WaitUntil(() => agent.remainingDistance <= margenDeLlegada); // 3. ME QUEDO EN ESPERA HASTA QUE LA DISTANCIA A ESTE PUNTO SEA 0
+
+            anim.SetBool("walking", false);
+
+            yield return new WaitForSeconds(Random.Range(1.5f, 3f)); // PARA QUE PARE CUANDO LLEGUE AL PUNTO UNOS SEGUNDOS RANDOM
+
         }
     }
     // SE EJECUTA ANTES DE IR A UN NUEVO PUNTO
