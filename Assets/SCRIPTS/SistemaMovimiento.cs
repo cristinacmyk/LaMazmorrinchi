@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // INCLUSIÓN DEL NUEVO SISTEMA DE INPUTS
 
-public class Player : MonoBehaviour
+public class SistemaMovimiento : MonoBehaviour
 {
 
     private CharacterController controller;
