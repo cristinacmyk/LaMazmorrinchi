@@ -67,4 +67,11 @@ public class Lola : MonoBehaviour
             indicePuntoActual = 0;
         }
     }
+
+    // CUANDO ME MANDEN DESCATIVARME...
+    private void OnDisable()
+    {
+        agent.enabled = false; // ANIM.ENABLED = FALSE;
+        StopAllCoroutines();
+    }
 }

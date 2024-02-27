@@ -11,7 +11,28 @@ public class SistemaDetecciones : MonoBehaviour
     [SerializeField] private Transform puntoInteraccion;
     [SerializeField] private float radioDeteccion ;
     [SerializeField] private LayerMask queEsInteractuable;
+    private Interactuable interactuableActual;
 
+    private Controles misControles;
+
+    private bool interactuando;
+
+    private void OnEnable()
+    {
+        misControles = new Controles();
+        misControles.Gameplay.Enable();
+        misControles.Gameplay.Interactuar.started += Interactuar;
+    }
+
+    //FUNCIÓN PARA LANZAR INTERACCIONES EN LO QUE TENGA DE FRENTE
+    private void Interactuar(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if(interactuableActual != null)
+        {
+            interactuableActual.Interactuar(this);
+            interactuando= true;
+        }
+    }
 
     void Start()
     {
@@ -25,7 +46,10 @@ public class SistemaDetecciones : MonoBehaviour
   
     private void FixedUpdate() // CICLO DE FÍSICAS: 0.02 SEGUNDOS
     {
-        DetectarInteractuables();
+        if(!interactuando)
+        {
+            DetectarInteractuables();
+        }
     }
 
     private void DetectarInteractuables()
@@ -34,7 +58,14 @@ public class SistemaDetecciones : MonoBehaviour
 
         if(colls.Length > 0) // SI SE HA DETECTADO AL MENOS 1...
         {
-            colls[0].GetComponent<Interactuable>().Interactuar();
+            interactuableActual = colls[0].GetComponent<Interactuable>();
+            interactuableActual.CambiarEstadoIcono(true);
         }
+        else if (interactuableActual != null)
+        {
+            interactuableActual.CambiarEstadoIcono(false);
+            interactuableActual = null;
+        }
+          
     }
 }

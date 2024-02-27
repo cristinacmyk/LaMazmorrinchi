@@ -9,5 +9,11 @@ public abstract class Interactuable : MonoBehaviour
     // SI NECESITO VARIABLES NECESITO HACER ABSTRACT CLASS, QUE TENDRÁ FUNCIONES CON Y SIN CUERPO
     [SerializeField] private GameObject canvasLocal;
 
-    public abstract void Interactuar();
+    public abstract void Interactuar(SistemaDetecciones interactuador);
+
+    //SIRVE PARA ALTERNAR EL ESTADO DEL ICONO
+    public void CambiarEstadoIcono(bool estado)
+    {
+        canvasLocal.SetActive(estado);
+    }
 }

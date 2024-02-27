@@ -39,9 +39,7 @@ public class SistemaMovimiento : MonoBehaviour
     {
         misControles = new Controles(); // PARA DAR VALOR A LA VARIABLE Y NO SE QUEDE EN NULL
 
-        misControles.Gameplay.Enable(); // PARA HABILITAR O DESHABILITAR CONTROLES. EJEM: EN UNA CINEMÁTICA PONES DISABLE
-
-        misControles.Gameplay.Interactuar.started += Interactuar; // SI SE PULSA LA E SE EJECUTA EL EVENTO (EN ESTE CASO EL DE INTERACTUAR)
+        misControles.Gameplay.Enable(); // PARA HABILITAR O DESHABILITAR CONTROLES. EJEM: EN UNA CINEMÁTICA PONES DISABLE      
 
         misControles.Gameplay.Moverse.performed += Moverse;
         misControles.Gameplay.Moverse.canceled += MoverseCanceled; // CANCEL ES CUANDO QUITAS EL DEDO DEL BOTÓN
@@ -78,13 +76,6 @@ public class SistemaMovimiento : MonoBehaviour
 
         input = new Vector3(input.x, 0, input.y);
     }
-
-    // INTERACTUAR
-    private void Interactuar(InputAction.CallbackContext obj)
-    {
-        Debug.Log("Interactuo!!");
-    }
-
 
     void Start()
     {

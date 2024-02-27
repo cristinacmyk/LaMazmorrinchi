@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RockCritter
+  m_Controller: {fileID: 9100000, guid: 4a56ed1b5c13c544c8a4e238c15808ba, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8aa4ec7108a12274c986ad9a726d4cd9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e6056906521977f4a8521179f54489ff, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 91ff140f381902d47adfe7c14c23c758, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 21866d4dcf855d04483ec688d23f94e6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3a336d0b2a248bf4c9b258ca0d52343e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cdaa7c76efa91a44e842d9766003e634, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f0c2c83012b636540a4e4a2fd8142433, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e164d9b99ad03e246a9c5bb11022c628, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 91b6fa8a3bf856e4f9fecd8721431925, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 92aaa48e81c6c7546854aa76a419ab20, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 48c5cfa3ea04c0842a79587f9386ea7c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 52119461fedb873439d7c90ec94f3db9, type: 2}
