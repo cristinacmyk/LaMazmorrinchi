@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Lola : MonoBehaviour
+public class SistemaPatrulla : MonoBehaviour
 {
 
     [SerializeField] private Transform zonaPatrulla;
@@ -12,7 +12,7 @@ public class Lola : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private float margenDeLlegada;
 
-    [SerializeField] private int indicePuntoActual = 0; // VA A HACER UN TRACKING DEL SIGUIENTE PUNTO AL CUAL DESPLAZARNOS
+    private int indicePuntoActual = -1; // VA A HACER UN TRACKING DEL SIGUIENTE PUNTO AL CUAL DESPLAZARNOS
 
     private List<Vector3> puntosPatrulla = new List<Vector3>(); // new LIST<>...--> ES UN CONSTRUCTOR, SE DIFERENCIA DEL ARRAY EN QUE ES ILIMITADO EN ESPACIOS
 
@@ -26,15 +26,11 @@ public class Lola : MonoBehaviour
             puntosPatrulla.Add(punto.position);
         }
     }
-    private void Start()
+    private void OnEnable()
     {
+        agent.enabled = true;
         StartCoroutine(PatrullaYEsperar());
     }
-    void Update()
-    {
-       
-    }
-
     private IEnumerator PatrullaYEsperar()
     {
         while(true)

@@ -11,17 +11,34 @@ public class SistemaDetecciones : MonoBehaviour
     [SerializeField] private Transform puntoInteraccion;
     [SerializeField] private float radioDeteccion ;
     [SerializeField] private LayerMask queEsInteractuable;
+    [SerializeField] private GameManagerSO gM;
+
     private Interactuable interactuableActual;
 
     private Controles misControles;
 
     private bool interactuando;
 
+    private SistemaMovimiento miMovimiento;
+
+    private void Awake()
+    {
+        miMovimiento = GetComponent<SistemaMovimiento>();
+    }
     private void OnEnable()
     {
         misControles = new Controles();
         misControles.Gameplay.Enable();
         misControles.Gameplay.Interactuar.started += Interactuar;
+
+        gM.InteraccionFinalizada += FinalizarInteraccion;
+    }
+
+    private void FinalizarInteraccion()
+    {
+        interactuableActual = null;
+        miMovimiento.enabled = true;
+        interactuando = false;
     }
 
     //FUNCIÓN PARA LANZAR INTERACCIONES EN LO QUE TENGA DE FRENTE
@@ -29,21 +46,19 @@ public class SistemaDetecciones : MonoBehaviour
     {
         if(interactuableActual != null)
         {
+            miMovimiento.enabled = false;
             interactuableActual.Interactuar(this);
             interactuando= true;
         }
     }
-
     void Start()
     {
         
     }
-
     void Update()
     {
         
-    }
-  
+    } 
     private void FixedUpdate() // CICLO DE FÍSICAS: 0.02 SEGUNDOS
     {
         if(!interactuando)

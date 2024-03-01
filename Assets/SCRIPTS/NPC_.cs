@@ -7,7 +7,10 @@ public class NPC_ : Interactuable
     // TIEMPO EN EL QUE LOLA TARDA EN ROTAR
     [SerializeField] private float tiempoRotar;
 
-    private Lola sistemaPatrulla;
+    [SerializeField] private DialogoSO miDialogo;
+    [SerializeField] private GameManagerSO gM;
+
+    private SistemaPatrulla sistemaPatrulla;
 
     private Animator anim;
 
@@ -15,9 +18,21 @@ public class NPC_ : Interactuable
 
     private void Awake()
     {
-        sistemaPatrulla = GetComponent<Lola>();
+        sistemaPatrulla = GetComponent<SistemaPatrulla>();
         anim = GetComponent<Animator>();
     }
+    private void OnEnable()
+    {
+        gM.InteraccionFinalizada += VolverAPatrullar;
+    }
+
+    private void VolverAPatrullar()
+    {
+        interactuadorActual = null;
+        sistemaPatrulla.enabled = true;
+        anim.SetBool("talking", false);
+    }
+
     public override void Interactuar(SistemaDetecciones interactuador)
     {
        interactuadorActual = interactuador;
@@ -45,5 +60,9 @@ public class NPC_ : Interactuable
         }
 
         anim.SetBool("talking", true);
+
+        // NPC NECESITA COMUNICARSE CON EL SISTEMA DE DIÁLOGO
+        gM.IniciarDialogo(miDialogo);
+
     }
 }
