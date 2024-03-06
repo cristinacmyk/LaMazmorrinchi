@@ -498,7 +498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zonaPatrulla: {fileID: 8451488839017123473}
   margenDeLlegada: 0.2
-  indicePuntoActual: -1
 --- !u!95 &2210502071806301398
 Animator:
   serializedVersion: 5
@@ -567,10 +566,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.1408279
+  m_Radius: 0.61061364
+  m_Height: 1.33781
   m_Direction: 1
-  m_Center: {x: 0, y: 0.67511535, z: 0}
+  m_Center: {x: -2.461982e-10, y: 0.56973505, z: -0.009307325}
 --- !u!1 &1650040712704329853
 GameObject:
   m_ObjectHideFlags: 0

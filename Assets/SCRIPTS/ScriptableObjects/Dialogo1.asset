@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: Dialogo1
   m_EditorClassIdentifier: 
   frases:
-  - "\xA1Hola, aventurera! Te esperan grandes aventuras :D"
-  - "Ve a recoger setas para m\xED y te dar\xE9 un objeto muy \xFAtil."
-  - "Encontrar\xE1s grandes peligros. Ten cuidado."
+  - "\xA1Pero bueno! \xBFD\xF3nde has aprendido modales? No te subas a mi cabeza.
+    Distancia personal, tio."
+  - "Quedate ah\xED si quieres. Tengo la fuerza suficiente para sostenerte. Hasta
+    podr\xEDa matarte pero, tio, chill, que soy pacifista."
+  - "En fin. \xBFPor qu\xE9 est\xE1s aqu\xED? En este sitio no hay m\xE1s que babosas
+    y mis primos patrullando por ah\xED. No suelo verlos..."
+  - "\xBFQue por qu\xE9? Porque no tengo tiempo de dar paseos a otras salas. PATRULLAR
+    ES MI \xDANICA MISI\xD3N EN LA VIDA."
+  - Aunque mis primos dicen que hay un tesoro al final de la mazmorra.
+  - Pero yo no voy a salir de esta sala para descubrirlo.
+  - VIVA PATRULLAR.
+  - "Si me voy, \xBFqui\xE9n hablar\xEDa con los pardillos que llegan aqu\xED?"
+  - "Podr\xEDa darte la chapa el tiempo que quisiera, total, no es como si existiera
+    alguien que tuviera prisa ahora mismo."
+  - "Bueno, bueno. Te tendr\xE9 que dejar ya. Encantado, eh."
   velocidadDialogo: 0.05
