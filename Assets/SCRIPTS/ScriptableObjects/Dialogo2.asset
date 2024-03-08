@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Dialogo2
   m_EditorClassIdentifier: 
   frases:
-  - "\xA1EY!"
+  - "\xA1Ey!"
   - "S\xED, t\xFA, aventurero."
-  - Ten cuidado si entras a la sala de la izquierda.
-  - "Las babosas de por aqu\xED, amigables no son."
+  - "Si entras a la sala de la izquierda encontrar\xE1s una familia de babosas y
+    dos cofres llenos de oro."
+  - Bueno, oro ya no creo que quede.
+  - "Las babosas de por aqu\xED no hace gran cosa."
+  - Salvo comerse todo lo que se encuentran en los cofres...
+  - "aaas\xED es la vida."
   velocidadDialogo: 0.05

@@ -5,10 +5,6 @@ using UnityEngine.InputSystem; // INCLUSIÓN DEL NUEVO SISTEMA DE INPUTS
 
 public class SistemaMovimiento : MonoBehaviour
 {
-
-    [SerializeField] private float vidas;
-    [SerializeField] private GameObject pantallaDeMuerte;
-
     private CharacterController controller;
 
     [SerializeField] private float velocidadAndar;
@@ -126,19 +122,5 @@ public class SistemaMovimiento : MonoBehaviour
         {
             anim.SetBool("falling", true);
         }
-    }
-    public void RecibirDano(float danoRecibido)
-    {
-        vidas -= danoRecibido;
-        if (vidas <= 0)
-        {
-            MeMuero();
-        }
-    }
-    private void MeMuero()
-    {
-        pantallaDeMuerte.SetActive(true);
-        Time.timeScale = 0;
-        Cursor.lockState = CursorLockMode.None;
     }
 }

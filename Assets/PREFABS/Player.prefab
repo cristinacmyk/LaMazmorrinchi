@@ -87,7 +87,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326451778361633864}
-  m_LocalRotation: {x: 0.0016799052, y: 0.09924823, z: -0.051615044, w: 0.9937217}
+  m_LocalRotation: {x: 0.0016799053, y: 0.09924823, z: -0.05161505, w: 0.9937217}
   m_LocalPosition: {x: -1.9466206e-11, y: 0.26693022, z: 1.5711663e-10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 8340788700434820766}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1115,6 +1115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437c3e98d0c04cc46b2c16664efde4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidas: 10
+  pantallaDeMuerte: {fileID: 0}
   velocidadAndar: 5
   suavidadRotacion: 0.3
   pies: {fileID: 2389277698625461708}

@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Dialogo4
   m_EditorClassIdentifier: 
   frases:
-  - "Pues... S\xED. El tesoro eres t\xFA mismo. Por eso est\xE1 el espejo ah\xED
-    puesto y... cof cof..."
-  - "No me mires as\xED. El dios creador de este mundo se pondr\xEDa m\xEDstico,
-    metaf\xF3rico..."
+  - "Pues... S\xED."
+  - "El tesoro eras t\xFA mismo todo el tiempo. Por eso est\xE1 el espejo ah\xED
+    puesto, para que te veas y... cof cof..."
+  - "No me mires as\xED. El dios de este mundo se pondr\xEDa m\xEDstico, metaf\xF3rico..."
   - Delirando por tener mucho trabajo...
   - "A m\xED qu\xE9 me cuentas."
-  - "\xBFC\xF3mo dices? \xBFQue no te puedes ver reflejado? "
+  - "\xBFC\xF3mo dices? \xBFQue no puedes verte reflejado? "
   - "Pues no s\xE9 qu\xE9 decirte."
-  - "aaas\xED es la vida."
+  - "Siempre puedes quedarte aqu\xED con nosotros. "
+  - Patrullando.
+  - Para toda la eternidad.
+  - JAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJ
   velocidadDialogo: 0.05

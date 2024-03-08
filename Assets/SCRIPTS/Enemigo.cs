@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemigo : MonoBehaviour
 {
     private Transform target;
+    //private float dano = 2;
 
     [Header("OverLap")]
     [SerializeField] private float radioVision;
@@ -17,8 +18,12 @@ public class Enemigo : MonoBehaviour
 
     [Header("Atacar")]
     [SerializeField] private float tiempoEntreAtaques;
+    //[SerializeField] private Transform puntoDeAtaqque;
+    //[SerializeField] private LayerMask queEsAzotable;
+    //[SerializeField] private float radioAtaque;
 
     private float timer;
+    //private int vida = 5;
 
     #region Mis Componentes
     private NavMeshAgent agent;
@@ -113,6 +118,13 @@ public class Enemigo : MonoBehaviour
         {
             agent.isStopped = true;
             anim.SetTrigger("Attack");
+            //Collider[] collsTocados = Physics.OverlapSphere(transform.position, radioVision, queEsTarget);
+
+
+            //if (collsTocados.Length > 0)
+            //{
+            //    collsTocados[0].GetComponent<SistemaDeCombate>().RecibirDano(dano);
+            //}
             timer = 0f;
 
             if (Vector3.Distance(transform.position, target.position) > 1.5f)
@@ -132,4 +144,9 @@ public class Enemigo : MonoBehaviour
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
+
+    //private void OndrawGizmos()
+    //{
+    //    Gizmos.DrawSphere(puntoDeAtaque.position, radioAtaque);
+    //}
 }
