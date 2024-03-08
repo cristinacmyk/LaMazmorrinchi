@@ -18,8 +18,6 @@ public class SistemaDeCombate : MonoBehaviour
     private int estadoDeAtaque;
     private float timerAtacar;
 
-    //private float vidas = 20;
-
     private void Awake()
     {
         anim= GetComponentInChildren<Animator>();
@@ -78,10 +76,6 @@ public class SistemaDeCombate : MonoBehaviour
         anim.SetInteger("estadoAtaque", estadoDeAtaque);
         puedeCombo = true;
     }
-    //public void RecibirDano(float danoRecibido)
-    //{
-    //    vidas -= danoRecibido;
-    //}
 
     #region EVENTOS DE ANIMACIÓN
     private void VentanaDeCombo()
